@@ -26,6 +26,14 @@ class User extends Model {
   }
 
   /**
+   * Declare all model associationsq
+   * @param {*} models
+   */
+  static associate(models) {
+    this.belongsTo(models.File, { foreignKey: 'avatar_id', as: 'avatar' });
+  }
+
+  /**
    * Helper method. Verifies if a user password matches with the respective one
    * stored into the database.
    * @param {User Password} password
