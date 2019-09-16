@@ -15,7 +15,7 @@ export default async (req, res, next) => {
     // It uses promisify to avoid specify a callback function on jwt.verify
     const decoded = await promisify(jwt.verify)(token, authConfig.secret);
 
-    // Set the logged userId on the request
+    // Set the logged data on the request
     req.userId = decoded.id;
     return next();
   } catch (error) {

@@ -37,7 +37,7 @@ class SessionController {
         name,
         email,
       },
-
+      // Returns a Token having userId as payload data
       token: jwt.sign({ id }, authConfig.secret, {
         expiresIn: authConfig.expiresIn,
       }),
