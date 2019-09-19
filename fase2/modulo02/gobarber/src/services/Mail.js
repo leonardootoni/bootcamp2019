@@ -6,7 +6,8 @@ import { resolve } from 'path';
 import mailConfig from '../config/mail';
 
 /**
- * Application Mail Service
+ * Application Mail Service.
+ * It uses handlebars html templates do send emails.
  * @author Leonardo Otoni
  */
 class Mail {
@@ -45,7 +46,7 @@ class Mail {
 
   /**
    * Send a message to a SMTP server
-   * @param {*} message
+   * @param {Object} message - Message Object
    */
   async sendMail(message) {
     return this.transporter.sendMail({
