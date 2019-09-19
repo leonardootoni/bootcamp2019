@@ -3,20 +3,22 @@ import Mail from '../../services/Mail';
 
 /**
  * Cancelation Mail Job
+ * Job to send an email to a provider when a customer cancel an appointment.
  * @author Leonardo Otoni
  */
 class CancellationMail {
-  // Provides a unique key for this job. Its a Queue name.
+  /**
+   * Provides the Official Job Name
+   */
   get key() {
     return 'CancellationMail';
   }
 
   /**
    * Define the task to perform when the Cancellation Mail job runs.
-   * @param {Appointment object having provider name, email, appointment date and user name} data
+   * @param {Object} data - Appointment object having provider name, email, appointment date and user name
    */
   async handle({ data }) {
-    console.log('Queue executed!');
     const { appointment } = data;
     await Mail.sendMail({
       to: `${appointment.provider.name} <${appointment.provider.email}>`,
