@@ -29,7 +29,7 @@ class Database {
   // Starts NO-SQL Connection and Load Mapping Objects
   async initNoSQLConnection() {
     this.initNoSQLConnectionConnection = await Mongoose.connect(
-      'mongodb://localhost:27017/gobarber',
+      process.env.MONGO_URL,
       {
         useNewUrlParser: true,
         useFindAndModify: true,
