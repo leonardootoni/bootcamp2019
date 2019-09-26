@@ -3,11 +3,11 @@
  * @author Leonardo Otoni
  */
 export default {
-  host: 'smtp.mailtrap.io',
-  port: 2525,
+  host: process.env.MAIL_HOST,
+  port: process.env.MAIL_PORT,
   auth: {
-    user: 'cb1aea7e4f1c76',
-    pass: 'fe35eb173bcd7f',
+    user: process.env.MAIL_USER,
+    pass: process.env.MAIL_PASS,
   },
   secure: false,
   default: {
