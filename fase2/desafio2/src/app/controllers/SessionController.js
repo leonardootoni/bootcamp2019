@@ -11,8 +11,8 @@ import User from '../models/User';
 class SessionController {
   /**
    * Authenticate an User and give back a Token and basic user data.
-   * @param {Request} req
-   * @param {Response} res
+   * @param {Object} req - Request
+   * @param {Object} res - Response
    */
   async store(req, res) {
     const loginSchema = Yup.object().shape({
