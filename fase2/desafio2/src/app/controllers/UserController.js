@@ -8,6 +8,8 @@ import User from '../models/User';
 class UserController {
   /**
    * Register a new user into the system
+   * @param {Object} req - Request
+   * @param {Object} res - Response
    */
   async store(req, res) {
     const userSchema = Yup.object().shape({
@@ -39,6 +41,8 @@ class UserController {
 
   /**
    * Performs the user password update
+   * @param {Object} req - Request
+   * @param {Object} res - Response
    */
   async update(req, res) {
     const validationSchema = Yup.object().shape({
