@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { isAfter, isEqual, format } from 'date-fns';
+import { isAfter, isEqual } from 'date-fns';
 import { Op } from 'sequelize';
 
 import Subscription from '../models/Subscription';
