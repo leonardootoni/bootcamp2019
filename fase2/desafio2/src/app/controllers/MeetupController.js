@@ -54,9 +54,7 @@ class MeetupController {
         },
       },
       attributes: ['id', 'title', 'location', 'timestamp'],
-      include: [
-        { model: File, as: 'banner', attributes: ['name', 'path', 'url'] },
-      ],
+      include: [{ model: File, attributes: ['name', 'path', 'url'] }],
       limit,
       offset,
     });
