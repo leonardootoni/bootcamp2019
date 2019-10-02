@@ -20,8 +20,8 @@ class Meetup extends Model {
    * @param {Object} models - Sequelize Loaded Models
    */
   static associate(models) {
-    this.belongsTo(models.File, { foreignKey: 'file_id', as: 'banner' });
-    this.belongsTo(models.User, { foreignKey: 'user_id', as: 'user' });
+    this.belongsTo(models.File, { foreignKey: 'file_id' });
+    this.belongsTo(models.User, { foreignKey: 'user_id' });
   }
 }
 
