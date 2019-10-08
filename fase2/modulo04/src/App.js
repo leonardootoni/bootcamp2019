@@ -1,9 +1,10 @@
 import React from 'react';
 import './App.css';
-import background from './assets/road-1072823_960_720.jpg';
+
+import TechList from './components/TechList';
 
 function App() {
-  return <img src={background} />;
+  return <TechList />;
 }
 
 export default App;
