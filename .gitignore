@@ -1,5 +1,4 @@
 node_modules
-.DS_Store
-
+.DS_Store/
 fase2/.DS_Store
 fase2/desafio2/.env
