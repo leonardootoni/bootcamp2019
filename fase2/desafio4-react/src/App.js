@@ -1,16 +1,14 @@
 import React, { Fragment } from 'react';
 import './App.css';
+
 import Header from './components/Header';
-import Post from './components/Post';
+import PostContainer from './components/PostContainer';
 
 function App() {
-  const posts = [1, 2];
   return (
     <Fragment>
       <Header />
-      {posts.map(post => (
-        <Post />
-      ))}
+      <PostContainer />
     </Fragment>
   );
 }
