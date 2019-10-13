@@ -1,0 +1,42 @@
+.comment-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-bottom: 0.8vh;
+}
+
+.comment-header-item {
+  margin-right: 1rem;
+  margin-bottom: 0.5vmin;
+}
+
+.comment-header-item > img {
+  border-radius: 50%;
+  width: auto;
+  height: 40px;
+}
+
+.comment-balloon {
+  background-color: rgb(231, 118, 118);
+  opacity: 0.85;
+  border-radius: 5px;
+  border: 1px solid;
+  border-color: rgb(175, 180, 180);
+  box-shadow: 2px 5px 9px #949697;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: flex-start;
+  padding: 1em;
+
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: smaller;
+  color: black;
+}
+
+.comment-balloon > p {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+}
