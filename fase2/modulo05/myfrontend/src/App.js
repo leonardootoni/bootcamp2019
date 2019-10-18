@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import Routes from './routes';
+import GlobalStyle from './styles/global';
 
 function App() {
-  return <div>Hello World</div>;
+  return (
+    <Fragment>
+      <Routes />
+      <GlobalStyle />
+    </Fragment>
+  );
 }
 
 export default App;
