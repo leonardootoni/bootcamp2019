@@ -16,6 +16,7 @@ export default class Main extends Component {
       newRepo: '',
       repositories: [],
       loading: false,
+      notFound: false,
     };
   }
 
@@ -44,28 +45,36 @@ export default class Main extends Component {
     const { newRepo, repositories } = this.state;
 
     try {
+      repositories.forEach(repo => {
+        if (repo.name === newRepo) {
+          throw new Error('Duplicated Repo.');
+        }
+      });
       const response = await api.get(`/repos/${newRepo}`);
       const data = {
         name: response.data.full_name,
       };
-      this.setState({ newRepo: '', repositories: [...repositories, data] });
+      this.setState({
+        newRepo: '',
+        repositories: [...repositories, data],
+        notFound: false,
+      });
     } catch (error) {
-      // Nothing
+      this.setState({ notFound: true });
     }
 
     this.setState({ loading: false });
   };
 
   render() {
-    const { newRepo, loading, repositories } = this.state;
-
+    const { newRepo, loading, notFound, repositories } = this.state;
     return (
       <Container>
         <h1>
           <FaGithubAlt />
           Repositories
         </h1>
-        <Form onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.handleSubmit} notFound={notFound ? 1 : 0}>
           <input
             type="text"
             placeholder="Add repository"

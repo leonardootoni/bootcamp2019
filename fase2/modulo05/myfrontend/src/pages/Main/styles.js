@@ -11,10 +11,10 @@ export const Form = styled.form`
 
   input {
     flex: 1;
-    border: 1px solid #eee;
     padding: 5px 10px;
     border-radius: 5px;
     font-size: 16px;
+    border: ${props => (props.notFound ? `1px solid red;` : `1px solid #eee;`)};
   }
 `;
 

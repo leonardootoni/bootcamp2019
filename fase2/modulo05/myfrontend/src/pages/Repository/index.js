@@ -14,10 +14,18 @@ class Repository extends PureComponent {
       repository: {},
       issues: [],
       loading: true,
+      states: { all: 'all', open: 'open', closed: 'closed' },
+      selectedState: 'all',
+      page: 1,
     };
   }
 
   async componentDidMount() {
+    this.fecthDataFromAPI();
+  }
+
+  fecthDataFromAPI = async () => {
+    const { selectedState, page } = this.state;
     const { match } = this.props;
     const repoName = decodeURIComponent(match.params.repository);
 
@@ -25,8 +33,9 @@ class Repository extends PureComponent {
       api.get(`/repos/${repoName}`),
       api.get(`/repos/${repoName}/issues`, {
         params: {
-          state: 'open',
-          per_page: 5,
+          state: selectedState,
+          per_page: 10,
+          page,
         },
       }),
     ]);
@@ -36,10 +45,28 @@ class Repository extends PureComponent {
       issues: myIssues.data,
       loading: false,
     });
-  }
+  };
+
+  selectChangeHandler = async event => {
+    await this.setState({ selectedState: event.target.value });
+    this.fecthDataFromAPI();
+  };
+
+  previousPageHandler = async () => {
+    const { page } = this.state;
+    this.setState({ page: page - 1 });
+    await this.fecthDataFromAPI();
+  };
+
+  nextPageHandler = async () => {
+    const { page } = this.state;
+    this.setState({ page: page + 1 });
+    await this.fecthDataFromAPI();
+  };
 
   render() {
-    const { repository, issues, loading } = this.state;
+    const { repository, issues, loading, states, page } = this.state;
+    const disabled = page === 1;
 
     if (loading) {
       return <Loading>Loading...</Loading>;
@@ -53,7 +80,11 @@ class Repository extends PureComponent {
           <h1>{repository.name}</h1>
           <p>{repository.description}</p>
         </Owner>
-
+        <select onChange={this.selectChangeHandler}>
+          <option value={states.all}>All</option>
+          <option value={states.open}>Open</option>
+          <option value={states.closed}>Closed</option>
+        </select>
         <IssueList>
           {issues.map(issue => (
             <li key={String(issue.id)}>
@@ -70,6 +101,16 @@ class Repository extends PureComponent {
             </li>
           ))}
         </IssueList>
+        <button
+          type="button"
+          onClick={this.previousPageHandler}
+          disabled={disabled}
+        >
+          Previous
+        </button>
+        <button type="button" onClick={this.nextPageHandler}>
+          Next
+        </button>
       </Container>
     );
   }
